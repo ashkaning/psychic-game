@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Word Guess Game</title>
+</head>
+
+<body>
+    <!------------------------------HTML codes----------------------------------------->
+    <h2 style="text-align: center;">Please guess the word from the picture below</h2>
+    <!--show the correct letters-->
+    <div style="text-align: center;">
+        <span style="font-size:44px;">Correct Letters: </span><span style="font-size:44px;color:green" id="userInput"></span>
+    </div>
+    <!--show the wrong letters-->
+    <div style="text-align: center;">
+            <span style="font-size:44px;">Wrong Letters: </span><span style="font-size:44px;color:red" id="userWrongInput"></span>
+    </div>
+    <!--show how many letters need to guess-->
+    <div style="font-size:44px;text-align: center;" id="">
+          <span>Blanks: </span>  <span id="blanks"></span>
+    </div>
+    <!--show how many letters remained to guess-->
+    <div style="font-size:44px;text-align: center;" >
+        <span id="remained"></span>
+    </div>
+    <!--reset the game-->
+    <div style="text-align: center">
+        <input style="margin: 0 auto" type="button" value="Reload Page" onClick="window.location.reload()">
+    </div>
+    <!------------------------------/HTML codes----------------------------------------->
+    <script type="text/javascript">
+        var wordGame = "ashkan"; //the word
+        var wordGameStr = Array.from(wordGame); //convert word to array
+        //console.log(wordGameStr);
+        var wordTry = 10; //max try
+        var winUserTemp = [];
+        var winUser = []; //initial an array to store user's correct letter input
+        var loseUser = []; //initial an array to store user's wrong letter input
+        var match = false;
+        for(i = 0; i<wordGameStr.length; i++){
+                    winUserTemp.push('-')
+                }   
+             document.getElementById("blanks").innerHTML = winUserTemp.join(' ');
+        /////////////////get lettters from user////////////////
+        document.onkeyup = function (event) {
+            
+            var userGuess = event.key.toLowerCase(); //convert to lower case and catch the letters on keyUp
+
+            for (i = 0, j = wordGame.length; i <= j; i++) {
+                if (wordGameStr[i] == userGuess) {
+                    match = true;
+                }
+            }
+            if (match && wordTry > 0) {
+                storeCorrectCharacters();
+                match = false;
+            }
+            else if (match === false && wordTry > 0) {
+                storeWrongCharacters()
+                match = false;
+            }
+            else {
+                document.getElementById("remained").innerHTML = ('You lost :)');
+            }
+            function storeCorrectCharacters() {
+                winUser.push(userGuess);
+                arrayCompare(wordGameStr,userGuess);
+                this.wordTry = this.wordTry - 1;
+                document.getElementById("userInput").innerHTML = winUser.join('');
+                document.getElementById("remained").innerHTML = ('Remianed letter: '+wordTry);
+            }
+            function storeWrongCharacters() {
+                loseUser.push(userGuess);
+                this.wordTry = this.wordTry - 1;
+                document.getElementById("userWrongInput").innerHTML = loseUser.join('');
+                document.getElementById("remained").innerHTML = ('Remianed letter: '+ wordTry);
+            }
+            function arrayCompare(arr1, arr2) {
+                for(i=0;i<arr1.length;i++){
+                    var found = arr1[i].indexOf(arr2);
+                }
+               
+                console.log(found + ' '+arr2)
+                winUserTemp.splice(found,1,arr2);
+                //console.log(arr2)
+                document.getElementById("blanks").innerHTML = winUserTemp.join(' ');
+                console.log(winUserTemp);
+                
+            }
+        }
+        
+    </script>
+</body>
+</html>
