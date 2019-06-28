@@ -15,40 +15,50 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-        
-    <link rel="stylesheet" href="assets/style.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-    <!------------------------------HTML codes----------------------------------------->
-    <h2 style="text-align: center;">Please guess the word from the picture below</h2>
-    <!--show the correct letters-->
-    <div style="text-align: center;">
-        <span style="font-size:44px;">Correct Letters: </span><span style="font-size:44px;color:green"
-            id="userInput"></span>
-    </div>
-    <!--show the wrong letters-->
-    <div style="text-align: center;">
-        <span style="font-size:44px;">Wrong Letters: </span><span style="font-size:44px;color:red"
-            id="userWrongInput"></span>
-    </div>
-    <!--show how many letters need to guess-->
-    <div style="font-size:44px;text-align: center;" id="">
-        <span>Blanks: </span> <span id="blanks"></span>
-    </div>
-    <!--show how many letters remained to guess-->
-    <div style="font-size:44px;text-align: center;">
-        <span id="remained"></span>
-    </div>
-    <!--reset the game-->
-    <div style="text-align: center">
-        <input style="margin: 0 auto" type="button" value="Reload Page" onClick="window.location.reload()">
-    </div>
-    <!------------------------------/HTML codes----------------------------------------->
-    <script type="text/javascript">
+    <div class="container main-bg">
+        <div class="row">
+            <div class="col-md-8">
+            <h2>Please guess the word from the picture</h2>
+        </div>
+        <div class="col-md-4">
+            <div id="images"></div>
+        </div>
+        </div>
+            <div class="row">
+            <!--show the correct letters-->
+            <div class="col-md-6 custom-font">
+                <span>Correct Letters: </span><span class="custom-green-span" id="userInput"></span>
+            </div>
+            <!--show the wrong letters-->
+            <div class="col-md-6 custom-font" >
+                <span>Wrong Letters: </span>
+                <span class="custom-red-span" id="userWrongInput"></span>
+            </div>
+        </div>
+        <div class="row">
+            <!--show how many letters need to guess-->
+            <div class="col-md-6 custom-font">
+                <span>Blanks: </span> <span class="custom-green-span" id="blanks"></span>
+            </div>
+            <!--show how many letters remained to guess-->
+            <div class="col-md-6 custom-font">
+                <span>Remained Letters: </span> <span class="custom-red-span" id="remained"></span>
+            </div>
+        </div>
+            <!--reset the game-->
+     
+            <div class="row">
+            <div class="col-md-12 text-center">
+                <input style="margin: 0 auto" type="button" value="Play Again" onClick="window.location.reload()">
+            </div>
+        </div>
         
-    </script>
-    <script src="assets/javascripts/game.js"></script>
+    </div>
+        <script src="assets/javascripts/game.js"></script> 
 </body>
-
 </html>
